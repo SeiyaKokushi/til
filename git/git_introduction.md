@@ -37,7 +37,7 @@ $ git config --global user.email Gitのメールアドレス
 　**登録後は、`$ git config --list`を実行して確認できるよ。**  
 
 ### GitHub上に新しいリポジトリの作成
-![git_introduction_1](https://github.com/SeiyaKokushi/til/git/git_introduction_1.png)  
+![git_introduction_1](https://github.com/SeiyaKokushi/til/blob/master/git/git_introduction_1.png)  
 
 　"**+ New repository**"から、新しいリポジトリの作成  
 　リポジトリに名前をつけて(ここでは"hoge"という名前をつける)、"**Create repository**"!!
@@ -70,7 +70,7 @@ $ git commit -m "コメント"
 を実行して、プロジェクトフォルダー内のファイルをローカルリポジトリに保存する。
 
 ### URLの登録
-![git_introduction_2](/Users/kokushiseiya/Documents/til/git/git_introduction_2.png)
+![git_introduction_2](https://github.com/SeiyaKokushi/til/blob/master/git/git_introduction_2.png)
 上の画像の赤い部分をコピー。
 ```
 $ git remote add origin <コピーしたURL>
