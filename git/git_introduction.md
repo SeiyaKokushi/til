@@ -95,7 +95,7 @@ GitHubを確認して、反映されてればOK!!
 ### masterブランチとは
 　一番最初からあるブランチ。
 　上の例だとAまたは、結合したCのことを指す。  
-　`$　git push origin master`で指しているmasterというのは、ブランチの名前を指していたんだよ!
+　`$ git push origin master`で指しているmasterというのは、ブランチの名前を指していたんだよ!
 
 ### branchの作成
 ```
@@ -113,7 +113,7 @@ $ git branch
 ```
 $ git checkout 移動先のブランチ
 ```
-を実行して、branchを切り替える。
+を実行して、branchを切り替える。  
 　**これだけでは、新ブランチがGitHubに反映されないのでPushする!!**
 
 ### ブランチの変更点をGitHubに反映する
@@ -123,3 +123,14 @@ $ git push origin ブランチ名
 を実行すると、新しいブランチがGitHub上にも現れる!
 
 ### ブランチの統合
+#### merge
+```
+$ git merge マージするbranch
+```
+を実行して、今いるブランチに指定したブランチを結合する。
+```
+$ git add -A
+$ git commit -m "コメント"
+$ git push origin master
+```
+を実行して、結合したブランチを反映させるのを忘れないように!
