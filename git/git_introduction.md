@@ -37,7 +37,7 @@ $ git config --global user.email Gitのメールアドレス
 　**登録後は、`$ git config --list`を実行して確認できるよ。**  
 
 ### GitHub上に新しいリポジトリの作成
-![git_introduction_1](/Users/kokushiseiya/Documents/til/git/git_introduction_1.png)  
+![git_introduction_1](https://github.com/SeiyaKokushi/til/git/git_introduction_1.png)  
 
 　"**+ New repository**"から、新しいリポジトリの作成  
 　リポジトリに名前をつけて(ここでは"hoge"という名前をつける)、"**Create repository**"!!
