@@ -10,10 +10,10 @@
 ### Normal Text
 　最も標準的なTextView。プロパティの各値の変更は特になし。    
 
-```xml:normal_text.xml
+```xml
 <TextView
     android:id="@+id/textNormal"
-    android:layout_width="200dp" <!-- 幅 -->
-    android:layout_height="wrap_content" <!-- 高さ -->
-    android:text="Normal Text" <!-- テキスト(ここで表示するテキストを変更できる) --> />
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:text="Normal Text"
 ```
