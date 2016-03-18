@@ -6,4 +6,14 @@
 　TextViewは、"文字列を表示する"という基本的な機能を持つため、ButtonやEditTextなどのウィジェットの親クラスにもなっている。    
 
 　公式リファレンスは[こちら](http://developer.android.com/intl/ja/reference/android/widget/TextView.html)
+## 様々なTextView
+### Normal Text
+　最も標準的なTextView。プロパティの各値の変更は特になし。    
 
+```xml:normal_text.xml
+<TextView
+    android:id="@+id/textNormal"
+    android:layout_width="200dp" <!-- 幅 -->
+    android:layout_height="wrap_content" <!-- 高さ -->
+    android:text="Normal Text" <!-- テキスト(ここで表示するテキストを変更できる) --> />
+```
