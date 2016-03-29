@@ -8,6 +8,7 @@
 　公式リファレンスは[こちら](http://developer.android.com/intl/ja/reference/android/widget/TextView.html)
 ## 様々なTextView
 ### Normal Text
+　![Normal Text](https://raw.githubusercontent.com/SeiyaKokushi/til/master/android/widget/TextView/normal_text.png)  
 　最も標準的なTextView。プロパティの各値の変更は特になし。
 
 ```xml
@@ -20,6 +21,7 @@
 　`andrid:text`のパラメータを変えることで、表示する文字列を変更できる。
 
 ### Color Text
+　![Color Text](https://raw.githubusercontent.com/SeiyaKokushi/til/master/android/widget/TextView/color_text.png)  
 　Normal Textの文字の色を変更した、TextView。
 
 ```xml
@@ -34,6 +36,7 @@
 文字列の色は、**"#"**から始まる16進数。
 
 ### Size Text
+　![Size Text](https://raw.githubusercontent.com/SeiyaKokushi/til/master/android/widget/TextView/size_text.png)  
 　Normal Textの文字の大きさを変更した、TextView。
 
 ```xml
@@ -55,6 +58,7 @@
 |pt|Pointsの略で、文字サイズによく使用される。1インチの1/72を基準とした画面の物理サイズ。|
 
 ### Style Text
+　![Style Text](https://raw.githubusercontent.com/SeiyaKokushi/til/master/android/widget/TextView/style_text.png)  
 　Normal Textにスタイルを付加した、TextView。
 
 ```xml
@@ -77,6 +81,7 @@
 　**"|"**で区切ることで、複数のスタイルを組み合わせることができる。
 
 ### Multi Text
+　![Multi Text](https://raw.githubusercontent.com/SeiyaKokushi/til/master/android/widget/TextView/multi_text.png)  
 　文字列を複数行で表示する、TextView。
 
 ```xml
@@ -90,6 +95,7 @@
 　入力された文字列を、`android:maxLines`で指定した行数以下で表示する。指定した行数に収まらない場合でも、指定した行数までしか表示しない。
 
 ### Ellipsize Text
+　![Ellipsize Text](https://raw.githubusercontent.com/SeiyaKokushi/til/master/android/widget/TextView/ellipsize_text.png)  
 　文字列がTextView内に収まらない場合には、"..."を表示して省略する、TextView。
 
 ```xml
@@ -104,6 +110,7 @@
 　`android:ellipsize`でどの部分を省略するか決定する。startで文頭、middleで真ん中、endで末尾を省略。
 
 ### Marquee Text
+　![Marquee Text](https://raw.githubusercontent.com/SeiyaKokushi/til/master/android/widget/TextView/marquee.gif)  
 　文字列がTextView内に収まらない場合には、自動スライドで全文を順次表示する、TextView。
 
 ```xml
@@ -120,6 +127,7 @@
 　マーキー表示させるためには、`android:focusable`と`android:focusableInTouchMode`と`android:singleLine`を**true**にする。
 
 ### Gravity Text
+　![Gravity Text](https://raw.githubusercontent.com/SeiyaKokushi/til/master/android/widget/TextView/gravity_text.png)  
 　文字列をTextView内のどこかに寄せて表示する、TextView。
 
 ```xml
@@ -150,6 +158,7 @@
 |end|オブジェクトの大きさにかかわらず、コンテナの末尾にオブジェクトを寄せる|
 
 ### Revoke Text
+　![Revoke Text](https://raw.githubusercontent.com/SeiyaKokushi/til/master/android/widget/TextView/revoke_text.png)  
 　文字列に取り消し線をつけた、TextView。
 
 ```java
