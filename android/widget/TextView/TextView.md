@@ -98,6 +98,68 @@
     android:layout_width="200dp"
     android:layout_height="wrap_content"
     android:maxLines="1"
+    android:text="いろはにほへと ちりぬるを わかよたれそ つねならむ うゐのおくやま けふこえて あさきゆめみし ゑひもせす"
     android:ellipsize="end" />
 ```
+　`android:ellipsize`でどの部分を省略するか決定する。startで文頭、middleで真ん中、endで末尾を省略。
 
+### Marquee Text
+　文字列がTextView内に収まらない場合には、自動スライドで全文を順次表示する、TextView。
+
+```xml
+<TextView
+    android:id="@+id/textMarquee"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:ellipsize="marquee"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:singleLine="true"
+    android:text="いろはにほへと ちりぬるを わかよたれそ つねならむ うゐのおくやま けふこえて あさきゆめみし ゑひもせす" />
+```
+　マーキー表示させるためには、`android:focusable`と`android:focusableInTouchMode`と`android:singleLine`を**true**にする。
+
+### Gravity Text
+　文字列をTextView内のどこかに寄せて表示する、TextView。
+
+```xml
+<TextView
+    android:id="@+id/textGravity"
+    android:layout_width="200dp"
+    android:layout_height="64dp"
+    android:text="gravity Text"
+    android:gravity="bottom|right" />
+```
+　`android:gravity`のパラメータを変えることで、寄せる場所を変更できる。    
+
+|Constant|Description|
+|:--|:--|
+|top|オブジェクトのサイズによらず、上に寄せる|
+|bottom|オブジェクトのサイズによらず、下に寄せる|
+|left|オブジェクトのサイズによらず、左に寄せる|
+|right|オブジェクトのサイズによらず、右に寄せる|
+|center_vertical|オブジェクトのサイズによらず、縦方向中央に寄せる|
+|fill_vertical|オブジェクトの高さを、コンテナのサイズに合わせる|
+|center_horizontal|オブジェクトのサイズによらず、横方向中央に寄せる|
+|fill_horizontal|オブジェクトの幅を、コンテナのサイズに合わせる|
+|center|オブジェクトのサイズによらず、縦方向横方向ともに中央に寄せる|
+|fill|オブジェクトの幅と高さを、コンテナのサイズに合わせる|
+|clip_vertical|top/bottomの追加オプションとして、オブジェクトの上部/下部の境界をコンテナの境界に合わせる|
+|clip_horizontal|left/rightの追加オプションとして、オブジェクトの左側/右側の境界をコンテナの境界に合わせる|
+|start|オブジェクトの大きさにかかわらず、コンテナの先頭にオブジェクトを寄せる|
+|end|オブジェクトの大きさにかかわらず、コンテナの末尾にオブジェクトを寄せる|
+
+### Revoke Text
+　文字列に取り消し線をつけた、TextView。
+
+```java
+    // textRevokeを紐付け
+    TextView textRevoke = (TextView) findViewById(R.id.textRevoke);
+    // textRevokeのペイントを取得し、paintの初期化
+    TextPaint paint = textRevoke.getPaint();
+    // フラグのセット(ここで取り消し線を装飾するよう設定)
+    paint.setFlags(textRevoke.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+    // paintにアンチエイリアスを設定
+    paint.setAntiAlias(true);
+```
+　TextViewのPaintを取得し、取り消し線のフラグをセットすることで、装飾が可能。
