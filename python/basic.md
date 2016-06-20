@@ -30,6 +30,8 @@ Hello Cisco"""
 =>hello hello hello    
 
 ## Bool型
+- "かつ"の表現は`A and B`
+- "または"の表現は`A or B`
 - "A<>B"は"A!=B"と同じ意味
 
 ## List型
@@ -73,3 +75,106 @@ del list1[1]
 print(list1)
 ```
 =>[1,3,4,5,6]  
+
+## 制御構造
+- Pythonは{}を使わずに、インデントで処理をまとめる
+```python
+for i in range(10):
+    if(i%2 == 0):
+        print("{} is even".format(i))
+    else:
+        print("{} is odd".format(i))
+print("done")
+```
+
+## 条件分岐
+```python
+if(条件A):
+    条件Aがtrueなら実行
+elif(条件B):
+    条件Aがfalseかつ条件Bがtrueなら実行
+else:
+    条件AもBもfalseなら実行
+```
+- switch文がないのでif文で実装する
+
+## ループ処理
+- CやJavaなどのforとは別物
+- CやJavaなどと同じような使い方も可
+```python
+for 変数 in リスト:
+    実行する処理
+```
+リストの0番目を変数に代入して実行  
+→リストの1番目を変数に代入して実行  
+→...  
+という感じ  
+Javaで言うとこの拡張for文に似てるね
+```python
+string = ""
+for char in ["H","e","l","l","o"]:
+    string += char
+print(string)
+```
+- 一定回数の処理にはrange関数を併用
+- range(x):0からx-1までの連番のリストを返す
+- range(x,y):xからy-1までの連番のリストを返す
+```python
+for i in range(10)
+    print(i)
+```
+- pythonのforはiteratorと呼ばれる仕組み
+- タプルや文字列、辞書などもkeyとして使える
+- while文も使える
+```python
+x = 6789329
+i = 1
+while(2**i < x):
+    i += 1
+
+print("2^{} > {}".format(i,x))
+```
+
+## 関数とモジュールの利用
+### 関数について
+- 特定の処理を行うための呼び出し口
+- 関数名に引数を与えて呼び出す
+- 関数は返り値を返す
+- 関数を使うことでコードがわかりやすくなる
+- コードの重複をなくして保守性を向上
+
+### モジュールについて
+- モジュールはプログラムの整理整頓手法
+- 機能ごとによるプログラムの整理
+- モジュールを利用するにはimportが必要
+
+## 標準入力
+- `raw_input()`でユーザーからの入力を受け付ける
+- 無限echoプログラム
+```python
+while(True):
+    print"please input:"
+    input = raw_input()
+    print input
+```
+
+## コマンドライン引数
+- スクリプトを"パラメータ"つきで起動する
+- スクリプト内に直接書き込むより融通性がある
+- コマンドライン引数にアクセスするにはsysモジュールをimport
+- 引数がargvにリストとして格納されている
+```python
+import sys
+
+print("----args----")
+print(len(sys.argv))
+print(sys.argv[0])
+print(sys.argv[1])
+print(sys.argv[2])
+print("------------")
+
+a = int(sys.argv[1])
+b = int(sys.argv[2])
+print("{} + {} = {}".format(a,b,a+b))
+```
+
