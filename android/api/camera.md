@@ -130,4 +130,131 @@ Android 2.3(API Level 9)以上の端末で特定のカメラにアクセスす�
 API Levelが9以上であれば、`Camerea.getCameraInfo`でカメラがどこについてるかや写真の向きについての情報を取得できる。
 
 ### Creating a preview class
+`SurfaceView`クラスでカメラのプレビューを行う。  
+viewのイベントを拾うために、`SurfaceHolder.Callback`を実装する。
+```java
+public class CameraPreview extends SurfaceView implementts SurfaceHolder.Callback {
+    private SurfaceHolder mHolder;
+    private Camera mCamera;
+
+    public CameraPreview(Context context, Camera camera) {
+        super(context);
+        mCamera = camera;
+
+        // SurfaceHolder.Callbackをインストール
+        // これによってsurfaceの生成、破棄のイベントを検知できる
+        mHolder = getHolder();
+        mHolder.addCallback(this);
+        // 必須ではないが、Android version 3.0以前のものにはつける
+        mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+    }
+
+    public void surfaceCreated(SurfaceHolder holder) {
+        // surfaceが生成されたら、カメラのプレビューを描写する場所を指定する
+        try {
+            mCamera.setPreviewDisplay(holder);
+            mCamera.startPreview();
+        } catch (IOException e) {
+            Log.d(TAG, "Erroe setting camera preview: " + e.getMEssage());
+        }
+    }
+
+    public void surfaceDestroyed(SurfaceHolder holder) {
+        // Activity内でCamera previewをreleaseするのを忘れないこと
+    }
+
+    public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
+        // プレビューの向き等がわかる時にはここでイベントの処理を行う
+        // リサイズやリフォーマットをする時は必ずプレビューをストップすること
+
+        if (mHolder.getSurface() == null) {
+            return;
+        }
+
+        // 変化を加える前にプレビューをストップさせる
+        try {
+            mCamera.stopPrecview();
+        } catch (Exception e) {
+            // ここは特に何もしない
+        }
+
+        // ここに向きを変えるとかサイズを変えるとかの処理を書く
+
+        // 新しい設定でプレビューをスタート
+        try {
+            mCamera.setPreviewDisplay(mHolder);
+            mCamera.startPreview();
+        } catch (Exception e) {
+            Log.d(TAG, "Error starting camera preview: " + e.getMessage());
+        }
+    }
+}
+```
+カメラプレビューのサイズを特定のサイズに変更したい場合は、`surfaceChanged()`メソッドの中に書くこと。
+プレビューサイズを変更する場合は、`getSupportedPreviewSizes()`で帰ってくる値を必ず使用すること。
+`setPreviewSize()`に適当な値をセットしてはいけない。
+
+### Placing preview in a layout
+今回の例では、FlameLayout上にプレビューをオーバーレイする。
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmls:android="http://schemas.android.com/apk/res/android"
+    android:orientaion="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <FrameLayout
+        anroid:id="@+id/camera_preview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1" />
+
+    <Button
+        andorid:id="@+id/button_capture"
+        android:text="Capture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        andorid:layout_gravity="center" />
+</LinearLayout>
+```
+多くのデバイスはカメラプレビューのデフォルトの向きがlandscapeになっている。
+今回の例ではhorizontalなレイアウトを作成したので、アプリの向き自体もmanifest内でlandscapeに修正している。
+```xml
+<activity android:name=".CameraActivity"
+    android:label="@string/app_name"
+    andorid:screenOrientation="landscape" >
+    <!-- ここで向きを設定してる -->
+
+    <intent-filter>
+        <action android:name="android.intent.action.MAiN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
+</activity>
+```
+> **メモ**: カメラの向きはlandscapeである必要はない。  
+> Android 2.2(API Level 8)からプレビューの向きを設定する`setDisplayOrientaion()`が使えるようになった。  
+> プレビューの向きを変えたい場合は、`sufaceChanged()`の中で`Camera.stopPreview()`によってプレビューを停止させてから、向きを変える。  
+> そして最後に`Camera.startPreview()`を呼んでプレビューを再開する。    
+
+次の例でpreview classで作成したものをどうやってActivityに適用するか示す。
+```java
+public class CameraActivity extends Activity {
+    private Camera mCamera;
+    private CameraPreview mPreview;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+
+        // Cameraのインスタンスを生成
+        mCamera = getCameraInstance();
+
+        // プレビュー用のviewを生成して、Activity内にセット
+        mPreview = new CameraPreview(this, mCamera);
+        FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+        preview.addView(mPreview);
+    }
+}
+```
 
